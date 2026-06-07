@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alph Studio — Name Art & Gifts</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ivory:     #FAF7F2;
+  --cream:     #F2EDE4;
+  --white:     #FFFFFF;
+  --forest:    #1D3828;
+  --forest-mid:#2B5240;
+  --forest-lt: #EAF0EC;
+  --terracotta:#C4724A;
+  --terra-lt:  #FAEEE7;
+  --charcoal:  #1C1C1A;
+  --ink:       #2E2E2B;
+  --muted:     #7A7870;
+  --border:    #E4DDD3;
+  --border-dk: #CFC8BD;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--ivory);
+  color:var(--charcoal);
+  font-family:'Outfit',sans-serif;
+  font-size:15px;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+
+/* ─── GRAIN OVERLAY ─── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;opacity:0.4;
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 56px;
+  background:rgba(250,247,242,0.96);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:500;letter-spacing:0.18em;
+  text-transform:uppercase;text-decoration:none;
+  color:var(--charcoal);
+}
+.nav-brand em{color:var(--forest);font-style:normal}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
+  transition:color 0.25s;
+}
+.nav-links a:hover{color:var(--forest)}
+.nav-order{
+  background:var(--forest);color:#fff;
+  padding:10px 26px;border-radius:3px;
+  font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;transition:background 0.2s,transform 0.2s;
+}
+.nav-order:hover{background:var(--forest-mid);transform:translateY(-1px)}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:0;
+  padding-top:80px;
+}
+.hero-left{
+  padding:80px 56px 80px 56px;
+}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--forest);margin-bottom:28px;
+}
+.hero-kicker::before{
+  content:'';display:block;width:24px;height:1px;background:var(--forest);
+}
+.hero-h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(52px,5.5vw,76px);
+  font-weight:300;line-height:1.08;
+  letter-spacing:-0.01em;
+  color:var(--charcoal);
+  margin-bottom:28px;
+}
+.hero-h1 em{
+  font-style:italic;color:var(--forest);
+  font-weight:400;
+}
+.hero-desc{
+  font-size:17px;color:var(--muted);font-weight:400;
+  max-width:460px;line-height:1.75;margin-bottom:40px;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-forest{
+  background:var(--forest);color:#fff;
+  padding:14px 32px;border-radius:3px;
+  font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;
+  display:inline-flex;align-items:center;gap:9px;
+  transition:background 0.2s,transform 0.2s;
+}
+.btn-forest:hover{background:var(--forest-mid);transform:translateY(-2px)}
+.btn-outline{
+  border:1.5px solid var(--border-dk);color:var(--charcoal);
+  padding:14px 32px;border-radius:3px;
+  font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;transition:border-color 0.2s,color 0.2s;
+  background:transparent;
+}
+.btn-outline:hover{border-color:var(--forest);color:var(--forest)}
+
+.hero-right{
+  height:100vh;
+  background:var(--cream);
+  border-left:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.hero-right::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 60% 40%,rgba(29,56,40,0.06),transparent 70%);
+}
+.hero-avatar-showcase{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  padding:48px;position:relative;z-index:1;
+}
+.showcase-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:20px;
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.showcase-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(29,56,40,0.08)}
+.showcase-card:nth-child(1){transform:translateY(-8px)}
+.showcase-card:nth-child(3){transform:translateY(8px)}
+.showcase-svg{width:110px;height:110px}
+.showcase-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--charcoal);
+}
+.showcase-label{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase}
+.hero-badge{
+  position:absolute;bottom:40px;right:40px;
+  background:var(--forest);color:#fff;
+  border-radius:50%;width:80px;height:80px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;text-align:center;
+  line-height:1.3;
+}
+
+/* ─── STRIP ─── */
+.strip{
+  background:var(--forest);color:#fff;
+  padding:16px 56px;
+  display:flex;align-items:center;justify-content:center;gap:48px;
+  flex-wrap:wrap;
+}
+.strip-item{font-size:12px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;opacity:0.85}
+.strip-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.35)}
+
+/* ─── HOW IT WORKS ─── */
+.how{
+  padding:100px 56px;
+  background:var(--white);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.how-inner{max-width:1100px}
+.section-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--terracotta);margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-eyebrow::before{content:'';display:block;width:20px;height:1.5px;background:var(--terracotta)}
+.section-h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,4vw,52px);
+  font-weight:300;line-height:1.1;
+  color:var(--charcoal);margin-bottom:16px;
+}
+.section-sub{font-size:16px;color:var(--muted);max-width:520px;margin-bottom:60px;line-height:1.75}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:32px;
+}
+.step{padding:32px 28px;background:var(--ivory);border-radius:4px;border:1px solid var(--border)}
+.step-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px;font-weight:300;
+  color:var(--forest);opacity:0.18;
+  line-height:1;margin-bottom:20px;
+}
+.step h3{font-size:16px;font-weight:600;margin-bottom:8px;color:var(--charcoal)}
+.step p{font-size:14px;color:var(--muted);line-height:1.65}
+
+/* ─── PRODUCTS ─── */
+.products{padding:100px 56px}
+.products-header{margin-bottom:56px}
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:4px;overflow:hidden;
+  max-width:1200px;
+}
+.product-card{
+  background:var(--white);
+  display:flex;flex-direction:column;
+  transition:background 0.25s;
+}
+.product-card:hover{background:var(--ivory)}
+.product-img{
+  aspect-ratio:1;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--cream);border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.product-img::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at center,rgba(29,56,40,0.04),transparent);
+}
+.p-svg{width:150px;height:150px;position:relative;z-index:1}
+.p-badge{
+  position:absolute;top:14px;right:14px;
+  background:var(--white);color:var(--forest);
+  font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  padding:5px 12px;border-radius:30px;border:1px solid var(--border-dk);
+}
+.product-body{padding:28px 24px;flex:1;display:flex;flex-direction:column}
+.p-cat{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.p-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:500;color:var(--charcoal);margin-bottom:10px;line-height:1.2;
+}
+.p-desc{font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:22px;flex:1}
+.p-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:400;color:var(--charcoal);margin-bottom:18px;
+}
+.p-price span{font-size:14px;font-family:'Outfit',sans-serif;font-weight:400;color:var(--muted)}
+.wa-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  background:#25D366;color:#fff;
+  padding:13px 20px;border-radius:3px;
+  font-size:12px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+  text-decoration:none;transition:background 0.2s,transform 0.2s;
+  border:none;cursor:pointer;width:100%;
+}
+.wa-btn:hover{background:#1EAE53;transform:translateY(-1px)}
+.wa-icon{width:17px;height:17px}
+
+/* ─── FAMILY TREE ─── */
+.family{
+  padding:100px 56px;
+  background:var(--forest);
+  color:#fff;
+}
+.family-inner{
+  max-width:1100px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.family-left .section-eyebrow{color:rgba(255,255,255,0.5)}
+.family-left .section-eyebrow::before{background:rgba(255,255,255,0.4)}
+.family-left .section-h2{color:#fff}
+.family-left p{color:rgba(255,255,255,0.65);font-size:16px;line-height:1.75;margin-bottom:24px}
+.family-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;font-weight:300;color:#fff;margin-bottom:28px;
+}
+.family-price span{font-size:15px;font-family:'Outfit',sans-serif;opacity:0.6}
+.wa-btn-white{
+  display:inline-flex;align-items:center;gap:9px;
+  background:#25D366;color:#fff;
+  padding:14px 32px;border-radius:3px;
+  font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;transition:background 0.2s;
+}
+.wa-btn-white:hover{background:#1EAE53}
+.family-preview{
+  background:var(--white);
+  border-radius:6px;
+  padding:36px;
+  box-shadow:0 24px 64px rgba(0,0,0,0.25);
+}
+.family-preview-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:11px;letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--muted);text-align:center;margin-bottom:28px;
+  padding-bottom:16px;border-bottom:1px solid var(--border);
+}
+.family-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fam-member{display:flex;flex-direction:column;align-items:center;gap:8px}
+.fam-svg{width:88px;height:88px}
+.fam-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;font-weight:500;color:var(--charcoal);
+  letter-spacing:0.1em;text-transform:uppercase;
+}
+
+/* ─── ABOUT ─── */
+.about{
+  padding:100px 56px;
+  background:var(--terra-lt);
+  border-top:1px solid var(--border);
+}
+.about-inner{
+  max-width:1100px;
+  display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center;
+}
+.about-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,3.5vw,44px);
+  font-weight:300;font-style:italic;
+  line-height:1.35;color:var(--charcoal);
+  margin-bottom:32px;
+}
+.about-quote em{color:var(--forest);font-style:normal;font-weight:500}
+.about-body{font-size:15.5px;color:var(--muted);line-height:1.8;margin-bottom:16px}
+.about-detail{
+  display:flex;gap:32px;flex-wrap:wrap;margin-top:32px;
+}
+.detail{
+  display:flex;flex-direction:column;gap:2px;
+}
+.detail-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:400;color:var(--forest);line-height:1;
+}
+.detail-label{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:0.06em}
+.about-img-wrap{
+  aspect-ratio:1;background:var(--cream);
+  border:1px solid var(--border-dk);border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+}
+.about-img-wrap::before{
+  content:'ALPHAVATAR';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:60px;font-weight:300;
+  color:var(--border-dk);letter-spacing:0.05em;
+  opacity:0.4;white-space:nowrap;
+  transform:translate(-50%,-50%) rotate(-15deg);
+}
+
+/* ─── CTA ─── */
+.cta{
+  padding:100px 56px;text-align:center;
+  background:var(--white);
+  border-top:1px solid var(--border);
+}
+.cta h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(40px,5vw,64px);
+  font-weight:300;color:var(--charcoal);margin-bottom:16px;
+}
+.cta h2 em{color:var(--forest);font-style:italic}
+.cta p{font-size:17px;color:var(--muted);margin-bottom:40px;max-width:500px;margin-inline:auto}
+.wa-big{
+  display:inline-flex;align-items:center;gap:12px;
+  background:#25D366;color:#fff;
+  padding:20px 48px;border-radius:4px;
+  font-size:15px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;transition:background 0.2s,transform 0.2s;
+  box-shadow:0 8px 24px rgba(37,211,102,0.25);
+}
+.wa-big:hover{background:#1EAE53;transform:translateY(-2px)}
+.wa-big svg{width:24px;height:24px}
+.cta-note{margin-top:20px;font-size:13px;color:var(--muted)}
+
+/* ─── FOOTER ─── */
+footer{
+  padding:48px 56px;
+  background:var(--charcoal);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+.footer-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
+}
+.footer-brand em{color:rgba(29,56,40,1);background:rgba(255,255,255,0.9);padding:0 4px;border-radius:2px;font-style:normal}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s}
+.footer-links a:hover{color:#fff}
+.footer-credit{font-size:12px;color:rgba(255,255,255,0.35)}
+.footer-credit a{color:rgba(255,255,255,0.6);text-decoration:none}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-left > *{animation:fadeUp 0.8s ease both}
+.hero-kicker{animation-delay:0.1s}
+.hero-h1{animation-delay:0.2s}
+.hero-desc{animation-delay:0.35s}
+.hero-actions{animation-delay:0.5s}
+
+/* ─── MOBILE ─── */
+@media(max-width:900px){
+  nav{padding:16px 24px}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:100px 24px 48px}
+  .hero-right{height:360px;border-left:none;border-top:1px solid var(--border)}
+  .steps{grid-template-columns:1fr 1fr}
+  .family-inner,.about-inner{grid-template-columns:1fr;gap:40px}
+  .how,.products,.family,.about,.cta{padding:64px 24px}
+  .strip{padding:16px 24px;gap:24px}
+  footer{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#"><em>Alph</em> Studio</a>
+  <ul class="nav-links">
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#family">Family Trees</a></li>
+    <li><a href="#about">Our Story</a></li>
+  </ul>
+  <a class="nav-order" href="#cta">Order via WhatsApp</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-kicker">Patented AI · Name Art · Canada</p>
+    <h1 class="hero-h1">Your name<br>has a <em>face</em></h1>
+    <p class="hero-desc">A patented algorithm transforms the letters in your name into a unique, one-of-a-kind portrait — printed on art, apparel, and keepsakes.</p>
+    <div class="hero-actions">
+      <a class="btn-forest" href="#products">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        Shop the Collection
+      </a>
+      <a class="btn-outline" href="#about">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-avatar-showcase">
+      <div class="showcase-card">
+        <svg class="showcase-svg" viewBox="0 0 120 120">
+          <rect width="120" height="120" fill="#F2EDE4"/>
+          <ellipse cx="60" cy="66" rx="32" ry="38" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <path d="M42 50 Q50 40 58 44 Q50 48 49 55" fill="none" stroke="#1D3828" stroke-width="1.4"/>
+          <circle cx="51" cy="57" r="3.5" fill="#1D3828"/>
+          <circle cx="69" cy="53" r="4.5" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <circle cx="69" cy="53" r="2" fill="#1D3828"/>
+          <path d="M56 70 Q60 66 64 70" fill="none" stroke="#1D3828" stroke-width="1.4"/>
+          <path d="M52 82 Q60 90 68 82" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <text x="60" y="113" font-family="Georgia,serif" font-size="7" fill="#1D3828" opacity="0.4" text-anchor="middle" letter-spacing="2">© ALPH</text>
+        </svg>
+        <span class="showcase-name">Anthony</span>
+        <span class="showcase-label">Name Art Print</span>
+      </div>
+      <div class="showcase-card">
+        <svg class="showcase-svg" viewBox="0 0 120 120">
+          <rect width="120" height="120" fill="#F2EDE4"/>
+          <ellipse cx="60" cy="65" rx="30" ry="36" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <path d="M36 38 Q50 22 64 38" fill="none" stroke="#1D3828" stroke-width="1.4"/>
+          <circle cx="51" cy="56" r="3" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <circle cx="51" cy="56" r="1.4" fill="#1D3828"/>
+          <circle cx="68" cy="54" r="3.5" fill="#1D3828" opacity="0.9"/>
+          <path d="M51 74 Q60 81 69 74" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <text x="60" y="113" font-family="Georgia,serif" font-size="7" fill="#1D3828" opacity="0.4" text-anchor="middle" letter-spacing="2">© ALPH</text>
+        </svg>
+        <span class="showcase-name">Susanna</span>
+        <span class="showcase-label">Name Art Print</span>
+      </div>
+      <div class="showcase-card">
+        <svg class="showcase-svg" viewBox="0 0 120 120">
+          <rect width="120" height="120" fill="#F2EDE4"/>
+          <ellipse cx="60" cy="64" rx="29" ry="35" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <circle cx="52" cy="58" r="3.2" fill="#1D3828"/>
+          <circle cx="67" cy="55" r="3.8" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <circle cx="67" cy="55" r="1.6" fill="#1D3828"/>
+          <path d="M53 71 Q60 77 67 71" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <text x="60" y="113" font-family="Georgia,serif" font-size="7" fill="#1D3828" opacity="0.4" text-anchor="middle" letter-spacing="2">© ALPH</text>
+        </svg>
+        <span class="showcase-name">Calum</span>
+        <span class="showcase-label">Name Art Print</span>
+      </div>
+      <div class="showcase-card">
+        <svg class="showcase-svg" viewBox="0 0 120 120">
+          <rect width="120" height="120" fill="#F2EDE4"/>
+          <ellipse cx="60" cy="65" rx="31" ry="37" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <path d="M42 36 Q50 25 58 28 Q52 36 51 44" fill="none" stroke="#1D3828" stroke-width="1.4"/>
+          <circle cx="52" cy="57" r="3" fill="#1D3828" opacity="0.9"/>
+          <circle cx="67" cy="55" r="3.5" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <path d="M52 73 Q60 79 67 73" fill="none" stroke="#1D3828" stroke-width="1.8"/>
+          <text x="60" y="113" font-family="Georgia,serif" font-size="7" fill="#1D3828" opacity="0.4" text-anchor="middle" letter-spacing="2">© ALPH</text>
+        </svg>
+        <span class="showcase-name">Marika</span>
+        <span class="showcase-label">Name Art Print</span>
+      </div>
+    </div>
+    <div class="hero-badge">Patented<br>Canada</div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <span class="strip-item">Unique to your name</span>
+  <span class="strip-dot"></span>
+  <span class="strip-item">Ships worldwide</span>
+  <span class="strip-dot"></span>
+  <span class="strip-item">Canadian patent</span>
+  <span class="strip-dot"></span>
+  <span class="strip-item">Order via WhatsApp</span>
+  <span class="strip-dot"></span>
+  <span class="strip-item">Family portraits available</span>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="how-inner">
+    <p class="section-eyebrow">How it works</p>
+    <h2 class="section-h2">From your name<br>to your portrait</h2>
+    <p class="section-sub">Our patented algorithm reads the letters in your name and translates them into a completely unique face illustration. No two avatars are ever the same.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Share your name</h3>
+        <p>Send us your name via WhatsApp — first name, full name, or a nickname.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>AI creates your face</h3>
+        <p>Our patented AI maps each letter into facial features — completely unique to you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Choose your product</h3>
+        <p>Your avatar goes on art prints, mugs, tees, phone cases, or a family portrait.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Delivered to you</h3>
+        <p>Digital files delivered instantly. Physical products shipped within 7–10 days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-header">
+    <p class="section-eyebrow">The collection</p>
+    <h2 class="section-h2">Shop Merchandise</h2>
+    <p class="section-sub">Every piece is personalised to a name. Every piece is one of a kind.</p>
+  </div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-img">
+        <svg class="p-svg" viewBox="0 0 200 200">
+          <rect width="200" height="200" fill="#F2EDE4"/>
+          <ellipse cx="100" cy="110" rx="55" ry="65" fill="none" stroke="#1D3828" stroke-width="2"/>
+          <path d="M70 85 Q80 70 95 75 Q85 80 83 90" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <circle cx="85" cy="92" r="4.5" fill="#1D3828"/>
+          <circle cx="115" cy="88" r="6" fill="none" stroke="#1D3828" stroke-width="2"/>
+          <circle cx="115" cy="88" r="2.8" fill="#1D3828"/>
+          <path d="M93 110 Q100 105 107 110" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <path d="M86 130 Q100 142 114 130" fill="none" stroke="#1D3828" stroke-width="2"/>
+          <text x="100" y="190" font-family="Georgia,serif" font-size="8" fill="#1D3828" opacity="0.3" text-anchor="middle" letter-spacing="3">© ALPH STUDIO</text>
+        </svg>
+        <span class="p-badge">Best Seller</span>
+      </div>
+      <div class="product-body">
+        <p class="p-cat">Art Print</p>
+        <h3 class="p-name">Bespoke Name Print</h3>
+        <p class="p-desc">A high-resolution digital portrait generated from your name. Perfect for framing, gifting, or sharing on social media.</p>
+        <div class="p-price">CAD 18 <span>/ ₹ 1,226</span></div>
+        <a class="wa-btn" href="https://wa.me/+918237188286?text=Hi!%20I'd%20like%20to%20order%20a%20Bespoke%20Name%20Print.%20My%20name%20is%3A" target="_blank">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <svg class="p-svg" viewBox="0 0 200 200">
+          <rect width="200" height="200" fill="#F2EDE4"/>
+          <rect x="50" y="70" width="90" height="90" rx="8" fill="#fff" stroke="#CFC8BD" stroke-width="1.5"/>
+          <path d="M140 90 Q164 90 164 115 Q164 140 140 140" fill="none" stroke="#CFC8BD" stroke-width="5"/>
+          <line x1="50" y1="160" x2="140" y2="160" stroke="#CFC8BD" stroke-width="1.5"/>
+          <ellipse cx="95" cy="112" rx="23" ry="27" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <circle cx="87" cy="107" r="3" fill="#1D3828" opacity="0.9"/>
+          <circle cx="102" cy="104" r="3.5" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <circle cx="102" cy="104" r="1.6" fill="#1D3828"/>
+          <path d="M87 122 Q95 129 103 122" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <text x="100" y="190" font-family="Georgia,serif" font-size="8" fill="#1D3828" opacity="0.3" text-anchor="middle" letter-spacing="3">© ALPH STUDIO</text>
+        </svg>
+        <span class="p-badge">Popular</span>
+      </div>
+      <div class="product-body">
+        <p class="p-cat">Drinkware</p>
+        <h3 class="p-name">Signature Ceramic Mug</h3>
+        <p class="p-desc">Start your morning with a face made from your name. 11oz premium ceramic — dishwasher and microwave safe.</p>
+        <div class="p-price">CAD 26 <span>/ ₹ 1,771</span></div>
+        <a class="wa-btn" href="https://wa.me/+918237188286?text=Hi!%20I'd%20like%20to%20order%20a%20Signature%20Mug.%20My%20name%20is%3A" target="_blank">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <svg class="p-svg" viewBox="0 0 200 200">
+          <rect width="200" height="200" fill="#F2EDE4"/>
+          <path d="M62 68 L38 90 L58 96 L58 158 L142 158 L142 96 L162 90 L138 68 Q122 56 100 56 Q78 56 62 68Z" fill="#fff" stroke="#CFC8BD" stroke-width="1.5"/>
+          <ellipse cx="100" cy="115" rx="21" ry="26" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <circle cx="92" cy="109" r="2.5" fill="#1D3828"/>
+          <circle cx="108" cy="107" r="3" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <circle cx="108" cy="107" r="1.4" fill="#1D3828"/>
+          <path d="M92 126 Q100 132 108 126" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <text x="100" y="190" font-family="Georgia,serif" font-size="8" fill="#1D3828" opacity="0.3" text-anchor="middle" letter-spacing="3">© ALPH STUDIO</text>
+        </svg>
+      </div>
+      <div class="product-body">
+        <p class="p-cat">Apparel</p>
+        <h3 class="p-name">Premium Cotton Tee</h3>
+        <p class="p-desc">100% organic cotton t-shirt with your avatar printed on the chest. Unisex fit, available in black, white, or natural.</p>
+        <div class="p-price">CAD 32 <span>/ ₹ 2,180</span></div>
+        <a class="wa-btn" href="https://wa.me/+918237188286?text=Hi!%20I'd%20like%20to%20order%20a%20Premium%20Tee.%20My%20name%20and%20preferred%20size%20is%3A" target="_blank">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <svg class="p-svg" viewBox="0 0 200 200">
+          <rect width="200" height="200" fill="#F2EDE4"/>
+          <rect x="66" y="46" width="68" height="112" rx="10" fill="#fff" stroke="#CFC8BD" stroke-width="1.5"/>
+          <rect x="82" y="52" width="36" height="6" rx="3" fill="#CFC8BD" opacity="0.7"/>
+          <circle cx="100" cy="148" r="5" fill="none" stroke="#CFC8BD" stroke-width="1.5" opacity="0.6"/>
+          <ellipse cx="100" cy="100" rx="19" ry="23" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <circle cx="93" cy="95" r="2.2" fill="#1D3828" opacity="0.9"/>
+          <circle cx="107" cy="93" r="2.8" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <circle cx="107" cy="93" r="1.2" fill="#1D3828"/>
+          <path d="M93 112 Q100 118 107 112" fill="none" stroke="#1D3828" stroke-width="1.5"/>
+          <text x="100" y="190" font-family="Georgia,serif" font-size="8" fill="#1D3828" opacity="0.3" text-anchor="middle" letter-spacing="3">© ALPH STUDIO</text>
+        </svg>
+      </div>
+      <div class="product-body">
+        <p class="p-cat">Accessories</p>
+        <h3 class="p-name">Avatar Phone Case</h3>
+        <p class="p-desc">Carry your identity everywhere. Slim hard case available for all iPhone and Samsung models.</p>
+        <div class="p-price">CAD 22 <span>/ ₹ 1,499</span></div>
+        <a class="wa-btn" href="https://wa.me/+918237188286?text=Hi!%20I'd%20like%20to%20order%20a%20Phone%20Case.%20My%20name%20and%20phone%20model%3A" target="_blank">
+          <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAMILY TREE -->
+<section class="family" id="family">
+  <div class="family-inner">
+    <div class="family-left">
+      <p class="section-eyebrow">Signature Product</p>
+      <h2 class="section-h2">The Family<br>Tree Portrait</h2>
+      <p>Every member of your family has a unique avatar. We bring them together in one beautifully composed portrait — ready to print and frame.</p>
+      <p>Up to 6 family members · Digital delivery · Print-ready A4 or A3</p>
+      <div class="family-price">CAD 50 <span>/ ₹ 3,407</span></div>
+      <a class="wa-btn-white" href="https://wa.me/+918237188286?text=Hi!%20I'd%20like%20to%20order%20a%20Family%20Tree.%20Our%20family%20members%20are%3A" target="_blank">
+        <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Order Family Portrait
+      </a>
+    </div>
+    <div class="family-preview">
+      <p class="family-preview-title">The Mascarenhas Family</p>
+      <div class="family-grid">
+        <div class="fam-member">
+          <svg class="fam-svg" viewBox="0 0 100 100"><ellipse cx="50" cy="58" rx="28" ry="32" fill="none" stroke="#1D3828" stroke-width="1.5"/><path d="M36 34 Q50 24 64 34" fill="none" stroke="#1D3828" stroke-width="1.2"/><circle cx="42" cy="50" r="3" fill="#1D3828" opacity="0.8"/><circle cx="58" cy="48" r="3.5" fill="none" stroke="#1D3828" stroke-width="1.5"/><circle cx="58" cy="48" r="1.6" fill="#1D3828"/><path d="M42 67 Q50 73 58 67" fill="none" stroke="#1D3828" stroke-width="1.5"/></svg>
+          <span class="fam-name">Anthony</span>
+        </div>
+        <div class="fam-member">
+          <svg class="fam-svg" viewBox="0 0 100 100"><ellipse cx="50" cy="58" rx="27" ry="31" fill="none" stroke="#1D3828" stroke-width="1.5"/><path d="M33 32 Q50 16 67 32" fill="none" stroke="#1D3828" stroke-width="1.2"/><circle cx="42" cy="50" r="2.8" fill="none" stroke="#1D3828" stroke-width="1.5"/><circle cx="42" cy="50" r="1.2" fill="#1D3828"/><circle cx="58" cy="48" r="3.2" fill="#1D3828" opacity="0.9"/><path d="M42 65 Q50 72 58 65" fill="none" stroke="#1D3828" stroke-width="1.5"/></svg>
+          <span class="fam-name">Susanna</span>
+        </div>
+        <div class="fam-member">
+          <svg class="fam-svg" viewBox="0 0 100 100"><ellipse cx="50" cy="57" rx="26" ry="30" fill="none" stroke="#1D3828" stroke-width="1.5"/><circle cx="43" cy="52" r="3.2" fill="#1D3828"/><circle cx="57" cy="50" r="2.8" fill="none" stroke="#1D3828" stroke-width="1.5"/><circle cx="57" cy="50" r="1.2" fill="#1D3828"/><path d="M43 67 Q50 74 57 67" fill="none" stroke="#1D3828" stroke-width="1.5"/></svg>
+          <span class="fam-name">Calum</span>
+        </div>
+        <div class="fam-member">
+          <svg class="fam-svg" viewBox="0 0 100 100"><ellipse cx="50" cy="58" rx="27" ry="31" fill="none" stroke="#1D3828" stroke-width="1.5"/><path d="M36 30 Q43 20 50 24 Q44 32 43 40" fill="none" stroke="#1D3828" stroke-width="1.2"/><circle cx="43" cy="50" r="2.8" fill="#1D3828" opacity="0.9"/><circle cx="57" cy="48" r="3.2" fill="none" stroke="#1D3828" stroke-width="1.5"/><path d="M43 66 Q50 73 57 66" fill="none" stroke="#1D3828" stroke-width="1.5"/></svg>
+          <span class="fam-name">Marika</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <p class="section-eyebrow">Our story</p>
+      <p class="about-quote">"What began as a <em>party game</em> became a patented innovation — and a way to see yourself in art."</p>
+      <p class="about-body">Alphavatar began in Canada when a family noticed that the letters in a name could form the features of a face. What started as a party game became an obsession — and eventually, a patent granted in both Canada and the United States.</p>
+      <p class="about-body">Today, every Alph Studio product begins with a name. Every portrait is completely unique — generated by our patented algorithm, refined by human designers.</p>
+      <div class="about-detail">
+        <div class="detail">
+          <span class="detail-val">256</span>
+          <span class="detail-label">Possible avatars per name</span>
+        </div>
+        <div class="detail">
+          <span class="detail-val">1</span>
+          <span class="detail-label">Patents — Canada</span>
+        </div>
+        <div class="detail">
+          <span class="detail-val">∞</span>
+          <span class="detail-label">Combinations, no two alike</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-img-wrap"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <h2>Ready to see<br>your <em>face</em>?</h2>
+  <p>Message your name on WhatsApp and we'll generate your unique avatar within 24 hours.</p>
+  <a class="wa-big" href="https://wa.me/+918237188286?text=Hi!%20I'd%20like%20to%20see%20my%20Alph%20Studio%20avatar.%20My%20name%20is%3A" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Message on WhatsApp
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand"><em>Alph</em> Studio</div>
+  <div class="footer-links">
+    <a href="#products">Shop</a>
+    <a href="#family">Family Trees</a>
+    <a href="#about">About</a>
+    <a href="#cta">Order</a>
+  </div>
+  <p class="footer-credit">Built by <a href="https://leimarics.com" target="_blank">Leimarics</a> · Cloud-Native Web Agency · Goa, India</p>
+</footer>
+
+</body>
+</html>
